@@ -734,4 +734,192 @@
 
 #----------------------------------------------------------------------------
 
+#예외처리
 
+# try :
+#     print("나누기 전용 계산기입니다.")
+#     nums = []
+#     nums.append(int(input("첫 번째 숫자를 입력하세요 : ")))
+#     nums.append(int(input("두 번째 숫자를 입력하세요 : ")))
+#    #nums.append(nums[0] / nums[1]) (만약 이걸 리스트에 넣지 않았다.)
+#     print("{0} / {1} = {2}".format(nums[0], nums[1], nums[2]))
+# except ValueError:
+#     print("에러! 잘못된 값을 입력하였습니다.")
+# except ZeroDivisionError as err:
+#     print(err)              #division by zero 라고 뜸
+# except Exception as err:                     #나머지 모든에러 처리하는..
+#     print("알 수 없는 에러가 발생했습니다")
+#     print(err)
+
+#------------------------------------------------------------------------------
+
+#에러 발생시키기
+
+# try:
+#     print("한 자리 숫자 나누기 전용 계산기입니다.")
+#     num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+#     num2 = int(input("두 번째 숫자를 입력하세요 : "))
+#     if num1 >= 10 or num2 >= 10:
+#         raise ValueError
+#     print("{0} / {1} = {2}".format(num1, num2, int(num1/num2)))
+# except ValueError:
+#     print("잘못된 값을 입력하였습니다. 한 자리 숫자만 입력하세요.")
+
+#--------------------------------------------------------------------------------
+
+#사용자 정의 예외처리 + finally
+
+# class BigNumberError(Exception) :
+#     def __init__ (self, msg) :
+#         self.msg = msg
+
+#     def __str__ (self) :
+#         return self.msg
+
+
+# try:
+#     print("한 자리 숫자 나누기 전용 계산기입니다.")
+#     num1 = int(input("첫 번째 숫자를 입력하세요 : "))
+#     num2 = int(input("두 번째 숫자를 입력하세요 : "))
+#     if num1 >= 10 or num2 >= 10:
+#         raise BigNumberError("입력값 : {0}, {1}".format(num1, num2))
+#     print("{0} / {1} = {2}".format(num1, num2, int(num1/num2)))
+# except ValueError:
+#     print("잘못된 값을 입력하였습니다. 한 자리 숫자만 입력하세요.")
+# except BigNumberError as err:
+#     print("에러가 발생했습니다. 한 자리 숫자만 입력하세요.")
+#     print(err)
+# finally:                    #무조건 실행되는 구문
+#     print("계산기를 이용해 주셔서 감사합니다.")
+
+#---------------------------------------------------------------------------------
+
+#모듈
+
+# import theater_module
+# theater_module.price(3) # 3명에서 영화 보러 갔을 때 가격
+# theater_module.price_morning(4) # 4명 조조 할인 영화 가격
+# theater_module.price_soldier(5) # 5명 군인이 영화보러 갔을 때
+
+# import theater_module as mv             # mv 라고 별명을 붙이는 거
+# mv.price(3)
+# mv.price_morning(4)
+# mv.price_soldier(5)
+
+# from theater_module import *            #theater_module 안쓰고 그냥 쓰겠다.
+# price(3)
+# price_morning(4)
+# price_soldier(5)
+
+# from theater_module import price, price_morning         #price랑 price_morning만 함수를 인용
+# price(5)
+# price_morning(6)
+
+# from theater_module import price_soldier as price
+# price(4)        #군인가격나옴
+
+#-----------------------------------------------------------------------------------
+
+#패키지 (모듈의 집합) , __all__ , 모듈 직접실행(__name == "__main__"), 패키지와 모듈위치
+
+# import travel.thailand                          # 모듈과 패키지만 import가능 / 클래스 및 함수는 안된다.
+# trip_to = travel.thailand.ThailandPackage()
+# trip_to.detail()
+
+# from travel.thailand import ThailandPackage         #클래스 함수 import가능
+# trip_to = ThailandPackage()
+# trip_to.detail()
+
+# from travel import vietnam
+# trip_to = vietnam.VietnamPakage()
+# trip_to.detail()
+
+
+# from travel import *
+# trip_to = vietnam.VietnamPakage()
+# trip_to.detail()
+# trip_to = thailand.ThailandPackage()
+# trip_to.detail()
+
+# import inspect
+# import random
+# print(inspect.getabsfile(random))                 #패키지와 모듈위치 알아 보는 법
+# print(inspect.getfile(thailand))
+
+#-------------------------------------------------------------------------------------
+
+# pip install
+
+# google에 pypi
+
+# pip list 하면 설치된 패키지 목록
+
+# pip show (pakage_name) 하면 버전을 알려줌
+
+# pip install --upgrade (pakage_name) 업데이트
+
+# pip uninstall (pakage_name) 삭제
+
+#---------------------------------------------------------------------------
+
+# 내장 함수
+
+# input : 사용자의 입력을 받는 함수
+# language = input("무슨 언어를 좋아하세요?")
+# print("{0}은 아주 좋은 언어입니다.!".format(language))
+
+
+# dir : 객체를 넘겨줬을 때 그 객체가 어떤 변수와 함수를 가지고 있는지 표시
+# print(dir())
+# import random # 외장 함수
+# # print(dir())
+# # import pickle
+# # print(dir())
+
+# print(dir(random))
+
+# lst = [1, 2, 3]
+# print(dir(lst))
+
+# name = "Jim"
+# print(dir(name))
+
+#google에 list of python builtins 내장 함수 목록확인 가능
+
+#------------------------------------------------------------------------------
+
+#외장함수 list of python modules
+
+#glob : 경로 내의 폴더 / 파일 목록 조회 (윈도우 dir)
+
+# import glob
+# print(glob.glob("*.py"))    #확장자가 py인 모든 파일
+
+# os : 운영체제에서 제공하는 기본 기능
+# import os
+# print(os.getcwd()) # 현재 디렉토리 표시
+
+# folder = "sample_dir"
+
+# if os.path.exists(folder):              #sample_dir이 있는지 확인
+#     print("이미 존재하는 폴더입니다.")
+#     os.rmdir(folder)
+#     print("폴더를 삭제하였습니다.")
+# else:
+#     os.makedirs(folder)                 #폴더 생성
+#     print(folder, "폴더를 생성하였습니다.")
+# print(os.listdir())
+
+# import time #시간 관련 함수
+# print(time.localtime())
+# print(time.strftime("%Y-%m-%d %H:%M:%S"))
+
+# import datetime
+# print("오늘 날짜는", datetime.date.today())
+
+# # timedelta : 두 날짜 사이의 간격
+# today = datetime.date.today() #오늘 날짜 저장
+# td = datetime.timedelta(days=100) # 100일 저장
+# print("우리가 만난지 100일은", today + td)
+
+#--------------- the basic of python end.. -----------------------

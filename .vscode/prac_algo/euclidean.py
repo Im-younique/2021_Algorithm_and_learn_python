@@ -3,8 +3,8 @@
 
 
 def euclid(a, b) :
-    # if(b > a) :
-    #     euclid(b, a)
+    if(b > a) :
+        euclid(b, a)
     if b == 0 :
         return a
     else :

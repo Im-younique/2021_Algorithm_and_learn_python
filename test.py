@@ -17,6 +17,7 @@
 
 # input().split() => 
 
-n = int(input())
-cache = [0 for x in range(n+1)]
-print(cache)
+str = "ALGORITHMISTOOHARDTENETALGORITHMSOEASY"
+
+substr = str[5:10]
+print(substr)

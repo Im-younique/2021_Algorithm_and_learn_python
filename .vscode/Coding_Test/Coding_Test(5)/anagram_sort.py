@@ -8,24 +8,24 @@ def is_anagram(str1, str2):
         return False
 
 
-str_list = list(input().strip().lower().split(' '))
+str_list = list(input().strip().lower().split(' '))     #공백제거, 소문자정렬, 공백기준 받음
 
-print_list = []
+print_list = []         
 
-while (len(str_list) != 0):
-    do = str_list.pop(0)
-    dos = [do]
-    deletes = []
+while (len(str_list) != 0):     #앞의 문자부터 하나씩 빼서 anagram을 확인하기 때문에 0이되면 종료
+    do = str_list.pop(0)        
+    dos = [do]                  #그룹핑
+    deletes = []                #같이 그룹핑 된 친구 삭제하기 위함
     for i in str_list:
-        if is_anagram(do, i):
-            dos.append(i)
-            deletes.append(i)
+        if is_anagram(do, i):   #str_list돌며 anagram인 문자열 찾기
+            dos.append(i)       #찾으면 dos에 같이 그룹핑
+            deletes.append(i)   #deletes에도 같이 그룹핑
     dos.sort()                  #그룹내 소팅
-    for d in deletes:
+    for d in deletes:           #deletes의 원소들을 돌며 str_list에서 빼줌
         str_list.pop(str_list.index(d))
-    print_list.append(dos)
+    print_list.append(dos)      #그룹핑 된것들 printlist배열에 넣어줌
 
-result = sorted(print_list, key=lambda x: (x, len(x)))       # 첫 번째 알파벳 순을 정렬기준으로 둔다. 두 번째 문자열의 길이.
+result = sorted(print_list, key=lambda x: (x, len(x)))       # 알파벳 순을 정렬기준으로 둔다 두 번째 문자열의 길이
 for i in range(0, len(result)):
     print(*result[i])
 #my_cord 1

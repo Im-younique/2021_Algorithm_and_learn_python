@@ -1,14 +1,11 @@
-import collections
-
-def noncompletion(part, comp):
-    my_list = collections.Counter(part) - collections.Counter(comp)
-    return my_list
 
 def main():
-    participant = list(input().split())
-    completion = list(input().split())
+    pati = list(input().strip().split())
+    com = list(input().strip().split())
+    result = []
+    result = list(set(pati) - set(com))
     
-    print(*noncompletion(participant, completion))
+    print(*result)
 
 if __name__ == '__main__':
     main()

@@ -8,7 +8,7 @@ def factory(stock, dates, supplies, import_date):
     while (stock < import_date):                          #하루에 1톤씩 사용함으로 정상적인 수입날까지의 양보다 적으면 수입을 한다.
         for i in range(index, len(dates)):      
             if dates[i] <= stock:               #반드시 수입해야한다.
-                heapq.heappush(heap, (-supplies[i], supplies[i]))     #최소 힙인데 최대 힙과 같은 효과.
+                heapq.heappush(heap, [-supplies[i], supplies[i]])     #최소 힙인데 최대 힙과 같은 효과.
                 index = i + 1
             else:
                 break

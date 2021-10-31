@@ -1,13 +1,13 @@
 import copy
 
 def anagram(st1, st2):
-    if ''.join(sorted(st1.lower())) == ''.join(sorted(st2.lower())):
+    if ''.join(sorted(st1)) == ''.join(sorted(st2)):
         return True
     else:
         return False
 
 def main():
-    my_list = list(map(str, input().strip().split()))
+    my_list = list(map(str, input().strip().lower().split()))
     group = list()
     delete = list()
     result = []

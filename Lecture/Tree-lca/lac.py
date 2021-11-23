@@ -34,7 +34,7 @@ def search_lca(exp_parent, depth, N, M):
         a, b = map(int, input().split())        #테스트케이스
         if depth[a] > depth[b]:         #depth가 다르면 한쪽으로 맞춰줌
             a, b = b, a
-        level_diff = depth[b] = depth[a]    #depth 다름의 높이 차이
+        level_diff = depth[b] - depth[a]    #depth 다름의 높이 차이
         for i in range(logN):
             if level_diff & 1 << i:         #몇 칸을 이동하느냐
                 b = exp_parent[b][i]        #i만큼 이동..?
@@ -67,3 +67,6 @@ def main():
 
     M = int(input())            #테스트 케이스
     search_lca(exp_parent, depth, N, M)
+
+if __name__ == '__main__':
+    main()

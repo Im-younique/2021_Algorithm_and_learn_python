@@ -1,4 +1,5 @@
 import sys
+from collections import defaultdict
 
 def bfs(matrix, start):                     #queue로 bfs 구현
     visit = list()
@@ -29,24 +30,12 @@ def dfs(matrix, start):                     #stack으로 dfs 구현
 
 def main():
     start = input()
-    matrix = {  'A': ['B'],                     #주어진 matrix (사실 input으로 만들어야함)
-                'B': ['A', 'C', 'H'],
-                'C': ['B', 'D'],
-                'D': ['C', 'E', 'G'],
-                'E': ['D', 'F'],
-                'F': ['E'],
-                'G': ['D'],
-                'H': ['B', 'I', 'J', 'M'],
-                'I': ['H'],
-                'J': ['H', 'K'],
-                'K': ['J', 'L'],
-                'L': ['K'],
-                'M': ['H']}
+    matrix = defaultdict(lambda: 0)
     N = 13
-    #matrix = {}
     for i in range(N):
-        lineinput = sys.stdin.readline().split()        #입력 저장 실패
-    #        matrix[lineinput[0]] = lineinput[1:len(lineinput)+1]        #key, value로 저장
+        lineinput = sys.stdin.readline().split()        #입력 저장 성공
+        my_k = lineinput.pop(0)
+        matrix[my_k] = lineinput
             
     print(*bfs(matrix, start))
     print(*dfs(matrix, start))

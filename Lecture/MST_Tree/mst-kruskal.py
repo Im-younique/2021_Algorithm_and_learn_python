@@ -27,8 +27,8 @@ def kruskal(vertex_list, edge_list):
         make_set(u)
 
     edges = edge_list
-    edges.sort()
-    mst = []
+    edges.sort()            #비용이 작은 것부터 탐색
+    mst = []                #경로 저장
     sum = 0
 
     for e in edges:

@@ -16,7 +16,7 @@ def bfs(source, sink, parent, edge):
                 continue
             queue.append(i)         #다음 방문을 위해 queue에 넣는다.
             visited[i] = 1          #방문한 값 입력
-            parent[i] = u           #저장
+            parent[i] = u           #경로저장
 
     if visited[sink]:   #sink를 찾은경우
         return 1
@@ -37,10 +37,10 @@ def ford_fulkerson(source, sink, edge):     #임의의 경로를 선택
         path_flow = min_flow(source, sink, parent, edge)    #경로의 최소값
         max_flow += path_flow               #리턴해야하는 최대값
         v = sink
-        while v != source:
+        while v != source:                  #거꾸로 찾음
             u = parent[v]                   #이웃노드
             edge[u][v] -= path_flow         #capacity값 update
-            edge[v][u] += path_flow
+            edge[v][u] += path_flow         #순방향은 줄고 반대방향은 늘어남
             v = parent[v]                   #다음 노드로 이동
         return max_flow 
 

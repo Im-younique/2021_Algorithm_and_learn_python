@@ -1,23 +1,22 @@
-# l = []
-# for _ in range(5):
-#     i = input()
-#     l.append(i)
+import random
 
-# l = list(map(int, input().split()))
+def main():
+    find_people = ['유창희', '황준영', '조영우', '윤준희', '강세훈', '김수창', '우지민', '김진서', '박종현',
+            '이상민', '하태영', '손예진', '송유진', '권효정', '조성민', '김영석', '정찬웅', '김현하', '정원직',
+            '홍예찬', '우태혁', '김영민', '이인기', '이윤기', '김관호', '백정은', '박찬종', '변경록', '김동혁',
+            '김사랑', '박민지', '이예인', '김종훈']
 
-# a = input() # '1 2 3 4 5'enter
-# b = a.split() # [1,2,3,4,5]
-
-
-
-# print(l)
-
-# (1 2 3 4 5)
-# [1,2,3,4,5]
-
-# input().split() => 
-
-str = "ALGORITHMISTOOHARDTENETALGORITHMSOEASY"
-
-substr = str[5:10]
-print(substr)
+    max = 32
+    winner_list = []
+    for _ in range(10):
+        my_random = random.randint(0, max)
+        winner_list.append(find_people.pop(my_random))
+        max -= 1
+    
+    
+    print("\n-----------------------------------------당첨자--------------------------------------------------\n")
+    print(winner_list)
+    print("\n-------------------------------------------------------------------------------------------------\n")
+        
+if __name__ == '__main__':
+    main()

@@ -1,4 +1,4 @@
-import copy
+import copy     #30점, 정확성 100%, 효율성 0%
 
 def solution(n, k, cmd):        #k는 인덱스 넘버
     init = [i for i in range(n)]

@@ -1,29 +1,35 @@
-from matplotlib.pyplot import axis
-import pandas as pd
-import numpy as np
+import sys
+import copy
 
-def avg(data):
-    res = round(data.mean(axis=1),2)
-    return res
+def dfs(arr, a, b, start):
+    dx = [0, 0, 1, -1]
+    dy = [1, -1, 0, 0]
+    stack = copy.deepcopy(start)
+    temp = []
+    day = 0
+    while(stack):
+        x, y = stack.pop()
+        for i in range(len(dx)):
+            if 0 <= dy[i]+y < a and 0 <= dx[i]+x < b and arr[dx[i]+x][dy[i]+y] == '0':  #동서남북
+                arr[dx[i]+x][dy[i]+y] = '1'
+                temp.append([dx[i]+x, dy[i]+y])
+        if stack == [] and temp != []:
+            stack = copy.deepcopy(temp)
+            temp = []
+            day += 1
+    for i in range(b):
+        if '0' in arr[i]:
+            return -1
+    return day
+        
+a, b = map(int, input().strip().split(' '))
+arr = []
+start = []
+for i in range(b):
+    line = sys.stdin.readline().strip().split(' ')
+    for j in range(len(line)):
+        if line[j] == '1':
+            start.append([i, j])
+    arr.append(line)
 
-def sinmax(data):
-    res = data.apply(np.sin)
-    res = res.apply(max, axis=1)
-    return res
-
-def outlier(data):
-    res = (data-data.mean()).abs()>=data.std()
-    return res
-
-if __name__ == '__main__':
-    mypd = [[5,6,2],[7,3,10]]
-    mypd = pd.DataFrame(mypd)
-    anpd = [[4, 1 ,10],[4.2, 1.2, 14],[3.8, 0, 1000],[-4, 0.9, 9]]
-    anpd = pd.DataFrame(anpd)
-    testpd = {"a":{"가":1, "나":4}, "b":{"가":2, "나": 5}, "c":{"가":3, "나":6}}
-    testpd = pd.DataFrame(testpd)
-    testpd = testpd.drop("가")
-    print(avg(mypd))
-    print(sinmax(mypd))
-    print(outlier(anpd))
-    print(testpd)
+print(dfs(arr, a, b, start))
